@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import easydriver as ed
+import Easydriver as ed
 
 MM_PER_STEP = 0.046
 MM_COUNTER = 0
