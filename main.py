@@ -34,16 +34,16 @@ stepper_pen = ed.easydriver(27, 0.001, 22, 26, 19)
 
 class Z_Motor(threading.Thread):
 	def __init__(self, bus, deviceId):
-        threading.Thread.__init__(self)
-        self.motor = ed.easydriver(27, 0.001, 22, 26, 19)
-        self.motor.set_eighth_step()
-        self.mm_per_step_z = 0.003636
+		threading.Thread.__init__(self)
+		self.motor = ed.easydriver(27, 0.001, 22, 26, 19)
+		self.motor.set_eighth_step()
+		self.mm_per_step_z = 0.003636
 
     def initial_sequence(self):
-    	self.move_down(6)
-    	time.sleep(1)
-    	self.move_up(6)
-    	time.sleep(1)
+		self.move_down(6)
+		time.sleep(1)
+		self.move_up(6)
+		time.sleep(1)
 
    	def move_down(self,mm):
    		print "moving down: %s mm" % (mm)
