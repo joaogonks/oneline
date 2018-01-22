@@ -59,13 +59,13 @@ class Z_Motor(threading.Thread):
             self.motor.step()
 
     def run(self):
-    self.initial_sequence()
-
-    while True:
-        print "[Pen] waiting for information"
-        print "[Pen] waiting for information."
-        print "[Pen] waiting for information.."
-        print "[Pen] waiting for information..."
+        print "starting pen..."
+        self.initial_sequence()
+        while True:
+            print "[Pen] waiting for information"
+            print "[Pen] waiting for information."
+            print "[Pen] waiting for information.."
+            print "[Pen] waiting for information..."
 
 class Spool(threading.Thread):
     def __init__(self, bus, deviceId):
