@@ -38,4 +38,4 @@ for i in range(0,100):
 
 
 # Clean up (just calls GPIO.cleanup() function.)
-stepper.finish()
+stepper_spool.finish()
