@@ -42,14 +42,14 @@ stepper_pen.set_eighth_step()
 # 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 # 	print MM_COUNTER
 
-for i in range (0,1600):
+for i in range (0,1650):
 	stepper_pen.step()
 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 	print MM_COUNTER
 
 stepper_pen.set_direction(ccw)
 
-for i in range (0,1600):
+for i in range (0,1650):
 	stepper_pen.step()
 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 	print MM_COUNTER
