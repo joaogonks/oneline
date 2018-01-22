@@ -47,13 +47,13 @@ class Z_Motor(threading.Thread):
 
     def move_down(self,mm):
         print "moving down: %s mm" % (mm)
-        self.steps_to_move = mm/self.mm_per_step_z
+        self.steps_to_move = int(mm/self.mm_per_step_z)
         self.motor.set_direction(cw)
         for i in range(0,self.steps_to_move):
             self.motor.step()
     def move_up(self,mm):
         print "moving up: %s mm" % (mm)
-        self.steps_to_move = mm/self.mm_per_step_z
+        self.steps_to_move = int(mm/self.mm_per_step_z)
         self.motor.set_direction(ccw)
         for i in range(0,self.steps_to_move):
             self.motor.step()
@@ -80,13 +80,13 @@ class Spool(threading.Thread):
 
     def move_forward(self,mm):
         print "moving down: %s mm" % (mm)
-        self.steps_to_move = mm/self.mm_per_step_spool
+        self.steps_to_move = int(mm/self.mm_per_step_spool)
         self.motor.set_direction(cw)
         for i in range(0,self.steps_to_move):
             self.motor.step()
     def move_back(self,mm):
         print "moving up: %s mm" % (mm)
-        self.steps_to_move = mm/self.mm_per_step_spool
+        self.steps_to_move = int(mm/self.mm_per_step_spool)
         self.motor.set_direction(ccw)
         for i in range(0,self.steps_to_move):
             self.motor.step()
