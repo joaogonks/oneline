@@ -27,13 +27,13 @@ Name as a string.
 # Create an instance of the easydriver class.
 # Not using sleep, enable or reset in this example.
 
-stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
-stepper_pen = ed.easydriver(27, 0.001, 22, 26, 19)
+# stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
+# stepper_pen = ed.easydriver(27, 0.001, 22, 26, 19)
 
 # Set motor direction to clockwise.
 
 class Z_Motor(threading.Thread):
-    def __init__(self, bus, deviceId):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.motor = ed.easydriver(27, 0.001, 22, 26, 19)
         self.motor.set_eighth_step()
@@ -68,7 +68,7 @@ class Z_Motor(threading.Thread):
             print "[Pen] waiting for information..."
 
 class Spool(threading.Thread):
-    def __init__(self, bus, deviceId):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.motor = ed.easydriver(18, 0.004, 23, 24, 17)
         self.motor.set_eighth_step()
