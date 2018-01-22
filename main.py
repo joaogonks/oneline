@@ -6,7 +6,7 @@ MM_PER_STEP = 0.046
 MM_COUNTER = 0
 
 cw = True
-ccw = !cw
+ccw = False
 
 """
 Arguments to pass or set up after creating the instance.
