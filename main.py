@@ -72,7 +72,7 @@ class Z_Motor(threading.Thread):
 class Spool(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        self.motor = ed.easydriver(18, 0.004, 23, 24, 17)
+        self.motor = ed.easydriver(18, 0.0001, 23, 24, 17)
         self.motor.set_eighth_step()
         self.mm_per_step_spool = 0.036
 
