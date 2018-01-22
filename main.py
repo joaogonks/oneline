@@ -2,7 +2,7 @@
 
 import easydriver as ed
 
-MM_PER_STEP = 0.023
+MM_PER_STEP = 0.046
 MM_COUNTER = 0
 
 cw = True
@@ -26,7 +26,7 @@ Name as a string.
 # Not using sleep, enable or reset in this example.
 
 stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17, 25)
-stepper_pen = ed.easydriver(18, 0.004, 23, 24, 17, 25)
+#stepper_pen = ed.easydriver(18, 0.004, 23, 24, 17, 25)
 
 # Set motor direction to clockwise.
 
