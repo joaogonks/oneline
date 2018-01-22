@@ -25,7 +25,7 @@ Name as a string.
 # Create an instance of the easydriver class.
 # Not using sleep, enable or reset in this example.
 
-stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17, 25)
+stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
 #stepper_pen = ed.easydriver(18, 0.004, 23, 24, 17, 25)
 
 # Set motor direction to clockwise.
