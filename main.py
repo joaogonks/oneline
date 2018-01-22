@@ -33,72 +33,72 @@ stepper_pen = ed.easydriver(27, 0.001, 22, 26, 19)
 # Set motor direction to clockwise.
 
 class Z_Motor(threading.Thread):
-	def __init__(self, bus, deviceId):
-		threading.Thread.__init__(self)
-		self.motor = ed.easydriver(27, 0.001, 22, 26, 19)
-		self.motor.set_eighth_step()
-		self.mm_per_step_z = 0.003636
+    def __init__(self, bus, deviceId):
+        threading.Thread.__init__(self)
+        self.motor = ed.easydriver(27, 0.001, 22, 26, 19)
+        self.motor.set_eighth_step()
+        self.mm_per_step_z = 0.003636
 
     def initial_sequence(self):
-		self.move_down(6)
-		time.sleep(1)
-		self.move_up(6)
-		time.sleep(1)
+        self.move_down(6)
+        time.sleep(1)
+        self.move_up(6)
+        time.sleep(1)
 
-   	def move_down(self,mm):
-   		print "moving down: %s mm" % (mm)
-   		self.steps_to_move = mm/self.mm_per_step_z
-   		self.motor.set_direction(cw)
-   		for i in range(0,self.steps_to_move):
-   			self.motor.step()
-   	def move_up(self,mm):
-   		print "moving up: %s mm" % (mm)
-   		self.steps_to_move = mm/self.mm_per_step_z
-   		self.motor.set_direction(ccw)
-   		for i in range(0,self.steps_to_move):
-   			self.motor.step()
+    def move_down(self,mm):
+        print "moving down: %s mm" % (mm)
+        self.steps_to_move = mm/self.mm_per_step_z
+        self.motor.set_direction(cw)
+        for i in range(0,self.steps_to_move):
+            self.motor.step()
+    def move_up(self,mm):
+        print "moving up: %s mm" % (mm)
+        self.steps_to_move = mm/self.mm_per_step_z
+        self.motor.set_direction(ccw)
+        for i in range(0,self.steps_to_move):
+            self.motor.step()
 
-   	def run(self):
-   		self.initial_sequence()
+    def run(self):
+    self.initial_sequence()
 
-   		while True:
-   			print "[Pen] waiting for information"
-   			print "[Pen] waiting for information."
-   			print "[Pen] waiting for information.."
-   			print "[Pen] waiting for information..."
+    while True:
+        print "[Pen] waiting for information"
+        print "[Pen] waiting for information."
+        print "[Pen] waiting for information.."
+        print "[Pen] waiting for information..."
 
 class Spool(threading.Thread):
-	def __init__(self, bus, deviceId):
+    def __init__(self, bus, deviceId):
         threading.Thread.__init__(self)
         self.motor = ed.easydriver(18, 0.004, 23, 24, 17)
         self.motor.set_eighth_step()
         self.mm_per_step_spool = 0.036
 
     def initial_sequence(self):
-    	self.move_down(5)
-    	time.sleep(1)
+        self.move_down(5)
+        time.sleep(1)
 
-   	def move_forward(self,mm):
-   		print "moving down: %s mm" % (mm)
-   		self.steps_to_move = mm/self.mm_per_step_spool
-   		self.motor.set_direction(cw)
-   		for i in range(0,self.steps_to_move):
-   			self.motor.step()
-   	def move_back(self,mm):
-   		print "moving up: %s mm" % (mm)
-   		self.steps_to_move = mm/self.mm_per_step_spool
-   		self.motor.set_direction(ccw)
-   		for i in range(0,self.steps_to_move):
-   			self.motor.step()
+    def move_forward(self,mm):
+        print "moving down: %s mm" % (mm)
+        self.steps_to_move = mm/self.mm_per_step_spool
+        self.motor.set_direction(cw)
+        for i in range(0,self.steps_to_move):
+            self.motor.step()
+    def move_back(self,mm):
+        print "moving up: %s mm" % (mm)
+        self.steps_to_move = mm/self.mm_per_step_spool
+        self.motor.set_direction(ccw)
+        for i in range(0,self.steps_to_move):
+            self.motor.step()
 
-   	def run(self):
-   		print "starting spool..."
-   		self.initial_sequence()
-   		while True:
-   			print "[Spool] waiting for information"
-   			print "[Spool] waiting for information."
-   			print "[Spool] waiting for information.."
-   			print "[Spool] waiting for information..."
+    def run(self):
+        print "starting spool..."
+        self.initial_sequence()
+        while True:
+            print "[Spool] waiting for information"
+            print "[Spool] waiting for information."
+            print "[Spool] waiting for information.."
+            print "[Spool] waiting for information..."
 
 spool = Spool()
 spool.start()
