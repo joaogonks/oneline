@@ -2,7 +2,7 @@
 
 import Easydriver as ed
 
-MM_PER_STEP = 0.046
+MM_PER_STEP = 0.036
 MM_COUNTER = 0
 
 cw = True
