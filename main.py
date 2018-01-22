@@ -62,10 +62,12 @@ class Z_Motor(threading.Thread):
         print "starting pen..."
         self.initial_sequence()
         while True:
-            print "[Pen] waiting for information"
-            print "[Pen] waiting for information."
-            print "[Pen] waiting for information.."
-            print "[Pen] waiting for information..."
+            self.initial_sequence()
+            time.sleep(5)
+            # print "[Pen] waiting for information"
+            # print "[Pen] waiting for information."
+            # print "[Pen] waiting for information.."
+            # print "[Pen] waiting for information..."
 
 class Spool(threading.Thread):
     def __init__(self):
