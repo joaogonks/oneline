@@ -34,7 +34,7 @@ stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
 stepper_spool.set_direction(cw)
 stepper_spool.set_eighth_step()
 
-while True:
+for i in range (0,999):
 	stepper_spool.step()
 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 	print MM_COUNTER
