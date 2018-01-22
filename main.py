@@ -26,7 +26,7 @@ Name as a string.
 # Not using sleep, enable or reset in this example.
 
 stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
-#stepper_pen = ed.easydriver(27, 0.004, 22, 26, 19)
+stepper_pen = ed.easydriver(27, 0.004, 22, 26, 19)
 
 # Set motor direction to clockwise.
 
