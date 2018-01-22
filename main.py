@@ -75,7 +75,7 @@ class Spool(threading.Thread):
         self.mm_per_step_spool = 0.036
 
     def initial_sequence(self):
-        self.move_down(5)
+        self.move_forward(5)
         time.sleep(1)
 
     def move_forward(self,mm):
