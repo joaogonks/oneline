@@ -26,7 +26,7 @@ Name as a string.
 # Not using sleep, enable or reset in this example.
 
 stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
-stepper_pen = ed.easydriver(27, 0.004, 22, 26, 19)
+stepper_pen = ed.easydriver(27, 0.001, 22, 26, 19)
 
 # Set motor direction to clockwise.
 
@@ -42,14 +42,14 @@ stepper_pen.set_eighth_step()
 # 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 # 	print MM_COUNTER
 
-for i in range (0,1000):
+for i in range (0,1500):
 	stepper_pen.step()
 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 	print MM_COUNTER
 
 stepper_pen.set_direction(ccw)
 
-for i in range (0,1000):
+for i in range (0,1500):
 	stepper_pen.step()
 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 	print MM_COUNTER
