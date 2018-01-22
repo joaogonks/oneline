@@ -30,7 +30,7 @@ stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
 
 # Set motor direction to clockwise.
 
-for i in range(0,100):
+while True:
 	stepper_spool.set_direction(cw)
 	stepper_spool.set_eighth_step()
 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
