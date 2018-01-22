@@ -94,11 +94,12 @@ class Spool(threading.Thread):
     def run(self):
         print "starting spool..."
         self.initial_sequence()
+        print "[Spool] Starting in:"
+        print "[Spool] 3"
+        print "[Spool] 2"
+        print "[Spool] 1"
         while True:
-            print "[Spool] waiting for information"
-            print "[Spool] waiting for information."
-            print "[Spool] waiting for information.."
-            print "[Spool] waiting for information..."
+            self.move_forward(1)
 
 spool = Spool()
 spool.start()
