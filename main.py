@@ -35,7 +35,7 @@ Name as a string.
 class Z_Motor(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        self.motor = ed.easydriver(27, 0.001, 22, 26, 19)
+        self.motor = ed.easydriver(27, 0.0001, 22, 26, 19)
         self.motor.set_eighth_step()
         self.mm_per_step_z = 0.003636
 
@@ -72,7 +72,7 @@ class Z_Motor(threading.Thread):
 class Spool(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        self.motor = ed.easydriver(18, 0.0001, 23, 24, 17)
+        self.motor = ed.easydriver(18, 0.001, 23, 24, 17)
         self.motor.set_eighth_step()
         self.mm_per_step_spool = 0.036
 
