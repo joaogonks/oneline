@@ -26,7 +26,7 @@ Name as a string.
 # Not using sleep, enable or reset in this example.
 
 stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
-#stepper_pen = ed.easydriver(18, 0.004, 23, 24, 17, 25)
+#stepper_pen = ed.easydriver(27, 0.004, 22, 26, 19)
 
 # Set motor direction to clockwise.
 
@@ -34,11 +34,18 @@ stepper_spool = ed.easydriver(18, 0.004, 23, 24, 17)
 stepper_spool.set_direction(cw)
 stepper_spool.set_eighth_step()
 
-for i in range (0,999):
-	stepper_spool.step()
+stepper_pen.set_direction(cw)
+stepper_pen.set_eighth_step()
+
+# for i in range (0,999):
+# 	stepper_spool.step()
+# 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
+# 	print MM_COUNTER
+
+for i in range (0,500):
+	stepper_pen.step()
 	MM_COUNTER = MM_COUNTER + MM_PER_STEP
 	print MM_COUNTER
-
 
 
 # Clean up (just calls GPIO.cleanup() function.)
