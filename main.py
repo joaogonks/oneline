@@ -123,6 +123,7 @@ class Main(threading.Thread):
         self.queue.put(info)
 
     def run(self):
+        MM_COUNTER = 0
         for item in test_list:
             self.steps_to_take = (item[0]/MM_PER_STEP) - MM_COUNTER
             self.spool.move_forward(item[0])
