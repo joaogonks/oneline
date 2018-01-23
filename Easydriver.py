@@ -59,7 +59,7 @@ class easydriver(object):
     def set_full_step(self):
         gpio.output(self.pin_microstep_1,False)
         gpio.output(self.pin_microstep_2,False)
-        gpio.output(self.pin_microstep_3,False)
+        #gpio.output(self.pin_microstep_3,False)
         
     def set_half_step(self):
         gpio.output(self.pin_microstep_1,True)
