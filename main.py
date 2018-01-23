@@ -125,7 +125,7 @@ class Main(threading.Thread):
     def run(self):
         MM_COUNTER = 0
         for item in test_list:
-            self.steps_to_take = (item[0]/MM_PER_STEP) - MM_COUNTER
+            self.steps_to_take = item[0] - MM_COUNTER
             self.spool.move_forward(item[0])
             MM_COUNTER = MM_COUNTER +  self.steps_to_take
             print "COUNTER: ", MM_COUNTER
