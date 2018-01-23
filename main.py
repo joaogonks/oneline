@@ -126,8 +126,9 @@ class Main(threading.Thread):
         MM_COUNTER = 0
         for item in test_list:
             self.steps_to_take = (item[0]/MM_PER_STEP) - MM_COUNTER
-            self.spool.move_forward(self.steps_to_take)
+            self.spool.move_forward(item[0])
             MM_COUNTER = MM_COUNTER +  self.steps_to_take
+            print "COUNTER: ", MM_COUNTER
             self.z_motor.receive(item[1])
 
 main = Main()
