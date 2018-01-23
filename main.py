@@ -125,7 +125,7 @@ class Main(threading.Thread):
 
     def run(self):
         for item in test_list:
-            self.steps_to_take = (item[0][0]/MM_PER_STEP) - MM_COUNTER
+            self.steps_to_take = (item[0]/MM_PER_STEP) - MM_COUNTER
             self.spool.move_forward(item[0], self.steps_to_take)
             self.z_motor.receive(item[1])
 
