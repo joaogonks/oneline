@@ -109,8 +109,8 @@ class Spool(threading.Thread):
         print "[Spool] 3"
         print "[Spool] 2"
         print "[Spool] 1"
-        while True:
-            self.move_forward(1)
+        # while True:
+        #     self.move_forward(1)
 
 class Main(threading.Thread):
     def __init__(self):
