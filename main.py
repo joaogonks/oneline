@@ -89,7 +89,7 @@ class Spool(threading.Thread):
         time.sleep(1)
 
     def move_forward(self,mm):
-        print "moving to: %s mm" % (mm)
+        print "moving forward: %s mm" % (mm)
         self.steps_to_move = int(mm/self.mm_per_step_spool)
         self.motor.set_direction(cw)
         for i in range(0,self.steps_to_move):
