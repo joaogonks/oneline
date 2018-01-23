@@ -11,7 +11,7 @@ MM_COUNTER = 0
 cw = True
 ccw = False
 
-test_list = [(5,True),(10,False)]#, (20,True),(45,False),(100,True),(200,False)]
+test_list = [(5,True),(10,False), (20,True),(45,False),(100,True),(200,False)]
 """
 Arguments to pass or set up after creating the instance.
 Step GPIO pin number.
