@@ -81,7 +81,7 @@ class Spool(threading.Thread):
         threading.Thread.__init__(self)
         self.motor = ed.easydriver(18, 0.0005, 23, 24, 17)
         self.motor.set_eighth_step()
-        self.mm_per_step_spool = 0.023
+        self.mm_per_step_spool = 0.034
 
     def initial_sequence(self):
         self.move_forward(5)
