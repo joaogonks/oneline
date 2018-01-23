@@ -88,13 +88,12 @@ class Spool(threading.Thread):
         MM_COUNTER = 0
         time.sleep(1)
 
-    def move_forward(self,mm, mm2):
+    def move_forward(self,mm):
         print "moving forward: %s mm" % (mm)
         self.steps_to_move = int(mm/self.mm_per_step_spool)
         self.motor.set_direction(cw)
         for i in range(0,self.steps_to_move):
             self.motor.step()
-        MM_COUNTER = MM_COUNTER + mm2
     def move_back(self,mm):
         #print "moving up: %s mm" % (mm)
         self.steps_to_move = int(mm/self.mm_per_step_spool)
@@ -126,7 +125,8 @@ class Main(threading.Thread):
     def run(self):
         for item in test_list:
             self.steps_to_take = (item[0]/MM_PER_STEP) - MM_COUNTER
-            self.spool.move_forward(item[0], self.steps_to_take)
+            self.spool.move_forward(item[0])
+            MM_COUNTER = MM_COUNTER +  self.steps_to_take
             self.z_motor.receive(item[1])
 
 main = Main()
