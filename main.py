@@ -129,8 +129,6 @@ class Main(threading.Thread):
     def run(self):
         self.initial_sequence()
         MM_COUNTER = 0
-        if MM_COUNTER % 500 is 0:
-            print "We're at: %smm" %(MM_COUNTER)
         print "Counter set to zero. Executing file..."
         for item in test.test_list:
             self.steps_to_take = item[0] - MM_COUNTER
@@ -138,6 +136,8 @@ class Main(threading.Thread):
             MM_COUNTER = MM_COUNTER +  self.steps_to_take
             print "This is where I think I am: %smm " % (MM_COUNTER)
             self.z_motor.receive(item[1])
+            if MM_COUNTER % 500 is 1:
+                print "We're at: %smm" %(MM_COUNTER)
         self.initial_sequence()
 
 main = Main()
