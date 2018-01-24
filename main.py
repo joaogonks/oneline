@@ -131,7 +131,7 @@ class Main(threading.Thread):
             self.steps_to_take = item[0] - MM_COUNTER
             self.spool.move_forward(self.steps_to_take)
             MM_COUNTER = MM_COUNTER +  self.steps_to_take
-            print "This is where I think I am: ", MM_COUNTER
+            print "This is where I think I am: %smm " % (MM_COUNTER)
             self.z_motor.receive(item[1])
 
 main = Main()
