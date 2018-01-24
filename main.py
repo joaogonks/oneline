@@ -68,13 +68,7 @@ class Z_Motor(threading.Thread):
     def run(self):
         print "starting pen..."
         self.initial_sequence()
-        # while True:
-        #     self.initial_sequence()
-        #     time.sleep(5)
-        #     # print "[Pen] waiting for information"
-        #     # print "[Pen] waiting for information."
-        #     # print "[Pen] waiting for information.."
-        #     # print "[Pen] waiting for information..."
+
 
 class Spool(threading.Thread):
     def __init__(self):
@@ -108,8 +102,7 @@ class Spool(threading.Thread):
         print "[Spool] 3"
         print "[Spool] 2"
         print "[Spool] 1"
-        # while True:
-        #     self.move_forward(1)
+
 
 class Main(threading.Thread):
     def __init__(self):
@@ -118,11 +111,19 @@ class Main(threading.Thread):
         self.spool = Spool()
         self.z_motor = Z_Motor()
 
+    def initial_sequence(self):
+        for i in range(0,2):
+            self.z_motor.receive(True)
+            self.spool.move_forward(5)
+            self.z_motor.receive(False)
+            self.spool.move_forward(5)
+
 
     def update_value(self, info):
         self.queue.put(info)
 
     def run(self):
+        self.initial_sequence()
         MM_COUNTER = 0
         for item in test_list:
             self.steps_to_take = item[0] - MM_COUNTER
