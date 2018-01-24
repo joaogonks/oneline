@@ -129,6 +129,8 @@ class Main(threading.Thread):
     def run(self):
         self.initial_sequence()
         MM_COUNTER = 0
+        if MM_COUNTER % 500 is 0:
+            print "We're at: %smm" %(MM_COUNTER)
         print "Counter set to zero. Executing file..."
         for item in test.test_list:
             self.steps_to_take = item[0] - MM_COUNTER
