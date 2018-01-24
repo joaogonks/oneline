@@ -4,12 +4,15 @@ import Easydriver as ed
 import threading
 import time
 import Queue
+import test
 
 MM_PER_STEP = 0.036
 MM_COUNTER = 0
 
 cw = True
 ccw = False
+
+print "AQUI: ", test.test_list
 
 test_list = [(10,True),(50,False)] #,(100,True),(200,False),(350,True),(500,False)]
 """
