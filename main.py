@@ -127,21 +127,11 @@ class Main(threading.Thread):
         self.queue.put(info)
 
     def run(self):
-        self.initial_sequence()
-        MM_COUNTER = 0
-        if MM_COUNTER % 500 is 0:
-            print "We're at: %smm" %(MM_COUNTER)
-        print "Counter set to zero. Executing file..."
-        for item in test.test_list:
-            self.steps_to_take = item[0] - MM_COUNTER
-            self.spool.move_forward(10*(self.steps_to_take))
-            MM_COUNTER = MM_COUNTER +  self.steps_to_take
-            print "This is where I think I am: %smm " % (MM_COUNTER)
-            self.z_motor.receive(item[1])
+ 
 
 main = Main()
 main.start()
-
+#add comment
 
 
 
