@@ -112,7 +112,8 @@ class Main(threading.Thread):
         self.z_motor = Z_Motor()
 
     def initial_sequence(self):
-        for i in range(0,2):
+        print "Running initial sequence..."
+        for i in range(0,3):
             self.z_motor.receive(True)
             self.spool.move_forward(5)
             self.z_motor.receive(False)
@@ -125,12 +126,13 @@ class Main(threading.Thread):
     def run(self):
         self.initial_sequence()
         MM_COUNTER = 0
-        # for item in test_list:
-        #     self.steps_to_take = item[0] - MM_COUNTER
-        #     self.spool.move_forward(self.steps_to_take)
-        #     MM_COUNTER = MM_COUNTER +  self.steps_to_take
-        #     print "COUNTER: ", MM_COUNTER
-        #     self.z_motor.receive(item[1])
+        print "Counter set to zero. Executing file..."
+        for item in test_list:
+            self.steps_to_take = item[0] - MM_COUNTER
+            self.spool.move_forward(self.steps_to_take)
+            MM_COUNTER = MM_COUNTER +  self.steps_to_take
+            print "This is where I think I am: ", MM_COUNTER
+            self.z_motor.receive(item[1])
 
 main = Main()
 main.start()
