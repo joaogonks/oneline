@@ -14,7 +14,7 @@ ccw = False
 
 print "AQUI: ", test.test_list
 
-test_list = [(10,True),(50,False)] #,(100,True),(200,False),(350,True),(500,False)]
+#test_list = [(10,True),(50,False)] #,(100,True),(200,False),(350,True),(500,False)]
 """
 Arguments to pass or set up after creating the instance.
 Step GPIO pin number.
@@ -130,7 +130,7 @@ class Main(threading.Thread):
         self.initial_sequence()
         MM_COUNTER = 0
         print "Counter set to zero. Executing file..."
-        for item in test_list:
+        for item in test.test_list:
             self.steps_to_take = item[0] - MM_COUNTER
             self.spool.move_forward(self.steps_to_take)
             MM_COUNTER = MM_COUNTER +  self.steps_to_take
