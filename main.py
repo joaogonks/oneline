@@ -138,6 +138,7 @@ class Main(threading.Thread):
             MM_COUNTER = MM_COUNTER +  self.steps_to_take
             print "This is where I think I am: %smm " % (MM_COUNTER)
             self.z_motor.receive(item[1])
+        self.initial_sequence()
 
 main = Main()
 main.start()
