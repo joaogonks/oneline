@@ -155,7 +155,7 @@ class Main(threading.Thread):
         self.encoder = Encoder(0,1)
         self.current_position = None
         self.last_position = None
-        self.tolerance = 0.01
+        self.tolerance = 0.1
 
     def initial_sequence(self):
         print "Running initial sequence..."
@@ -174,7 +174,9 @@ class Main(threading.Thread):
         for item in test.test_list:
             print "HERE"
             self.current_position = self.queue.get(True,None)
+            print "before while"
             while item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
+                print "moving forward"
                 self.spool.move_step_forward()
             self.z_motor.receive(item[1])
             print "We're at: %smm" % (self.current_position)
