@@ -165,15 +165,15 @@ class Main(threading.Thread):
             self.spool.move_forward(5)
             self.z_motor.receive(False)
             self.spool.move_forward(5)
+
     def update_value(self,value):
         self.queue.put(value)
 
     def run(self):
         self.initial_sequence()
         self.encoder.start()
-    #            MM_COUNTER = 0
         for item in test.test_list:
-            #print "HERE"
+            print "HERE"
             self.current_position = self.queue.get(True,None)
             #print "before while"
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
