@@ -173,10 +173,7 @@ class Main(threading.Thread):
 
     def run(self):
         self.encoder.start()
-    #            MM_COUNTER = 0
         self.encoder.set_zero()
-        self.current_position = self.queue.get(True,None)
-        self.spool.move_step_forward()
         while self.current_position < 0.0:
             self.current_position = self.queue.get(True,None)
             self.spool.move_step_forward()
