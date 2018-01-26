@@ -133,7 +133,7 @@ class Encoder(threading.Thread):
         elif self.last_position - current_position < 0 and not self.direction:
             self.lap -= 1
         self.last_position = current_position
-        print "HELLO", abs(4096 - (self.lap*self.resolution) + current_position)
+        print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))
         return (self.lap*self.resolution) + current_position
 
     def run(self):
