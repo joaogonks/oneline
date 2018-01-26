@@ -152,7 +152,7 @@ class Main(threading.Thread):
         self.queue = Queue.Queue()
         self.spool = Spool()
         self.z_motor = Z_Motor()
-        self.encoder = Encoder(0,0)
+        self.encoder = Encoder(0,1)
         self.current_position = None
         self.last_position = None
         self.tolerance = 0.01
