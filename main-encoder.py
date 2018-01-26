@@ -171,6 +171,7 @@ class Main(threading.Thread):
         self.initial_sequence()
     #            MM_COUNTER = 0
         for item in test.test_list:
+            print "HERE"
             self.current_position = self.queue.get(True,None)
             while item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.spool.move_step_forward()
