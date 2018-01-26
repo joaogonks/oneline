@@ -111,7 +111,7 @@ class Spool(threading.Thread):
         print "[Spool] 1"
 
 class Encoder(threading.Thread):
-    def __init__(self):
+    def __init__(self, bus, deviceId):
         threading.Thread.__init__(self)
         self.encoder = AMT203.AMT203(bus, deviceId)
         self.last_position = self.encoder.get_position()
