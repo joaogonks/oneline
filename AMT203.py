@@ -6,7 +6,6 @@ class AMT203():
   def __init__(self, bus=0, deviceId=0):
     self.deviceId = deviceId
     self.bus = bus
-    spi.max_speed_hz = 1000000
     # self.pin = pin
     GPIO.setmode(GPIO.BCM)
     # GPIO.setup(self.pin, GPIO.OUT)
@@ -16,6 +15,7 @@ class AMT203():
       self.spi = spidev.SpiDev()
       self.spi.open(self.bus,self.deviceId)
       self.open = True
+      self.spi.max_speed_hz = 1000000
       print "SPI connected. Device id: ", self.deviceId
     except:
       self.open = False
