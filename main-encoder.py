@@ -136,9 +136,6 @@ class Encoder(threading.Thread):
         # print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))-4096
         return abs(4096 - ((self.lap*self.resolution) + current_position))-4096
 
-    def set_zero(self):
-        self.encoder.set_zero()
-
     def run(self):
         print "Class Encoder thread started."
         while True:
@@ -172,17 +169,13 @@ class Main(threading.Thread):
         self.queue.put(value)
 
     def run(self):
-        self.encoder.start()
-        self.encoder.set_zero()
-        # while self.current_position < 0.0:
-        #     print "HERE"
-        #     print self.current_position
-        #     self.spool.move_step_forward()
-        #     self.current_position = self.queue.get(True,None)
-        #print "before while"
         self.initial_sequence()
+        self.encoder.start()
+    #            MM_COUNTER = 0
         for item in test.test_list:
             #print "HERE"
+            self.current_position = self.queue.get(True,None)
+            #print "before while"
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 #print "moving forward"
