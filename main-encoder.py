@@ -178,7 +178,7 @@ class Main(threading.Thread):
             #print "before while"
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
-                #print "moving forward"
+                print "moving forward"
                 self.spool.move_step_forward()
                 print self.current_position
             self.z_motor.receive(item[1])
