@@ -186,7 +186,7 @@ class Main(threading.Thread):
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 print "moving forward"
-                self.spool.move_step_forward()
+                self.spool.move_forward(1)
                 print self.current_position
             self.z_motor.receive(item[1])
             print "We're at: %smm" % (self.current_position)
