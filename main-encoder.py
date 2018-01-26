@@ -180,6 +180,9 @@ class Main(threading.Thread):
             self.current_position = self.queue.get(True,None)
             #print "before while"
             # self.encoder.set_zero()
+            while True:
+                self.spool.move_step_forward()
+                time.sleep(0.001)
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 print "moving forward"
