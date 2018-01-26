@@ -173,16 +173,16 @@ class Main(threading.Thread):
         self.encoder.start()
     #            MM_COUNTER = 0
         for item in test.test_list:
-            print "HERE"
+            #print "HERE"
             self.current_position = self.queue.get(True,None)
-            print "before while"
+            #print "before while"
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
-                print "moving forward"
+                #print "moving forward"
                 self.spool.move_step_forward()
                 print self.current_position
             self.z_motor.receive(item[1])
-            print "We're at: %smm" % (self.current_position)
+            #print "We're at: %smm" % (self.current_position)
         self.initial_sequence()
 
 main = Main()
