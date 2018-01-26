@@ -179,7 +179,7 @@ class Main(threading.Thread):
             self.encoder.set_zero()
             self.current_position = self.queue.get(True,None)
             self.spool.move_step_forward()
-            while self.current_position is not 0:
+            while not 0 - self.tolerance <= self.current_position <= 0 + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 self.spool.move_step_forward()
             #print "before while"
