@@ -127,13 +127,13 @@ class Encoder(threading.Thread):
 
     def get_relative_position(self):
         current_position = self.encoder.get_position()
-        print "RAW FROM ENCODER: ", current_position
         self.direction = False if (self.last_position < current_position and  current_position - self.last_position < self.gap) or  (self.last_position - current_position > self.gap) else True
         if current_position < self.last_position and self.direction:
             self.lap +=  1
         elif self.last_position - current_position < 0 and not self.direction:
             self.lap -= 1
         self.last_position = current_position
+        print "HELLO", (self.lap*self.resolution) + current_position
         return (self.lap*self.resolution) + current_position
 
     def run(self):
