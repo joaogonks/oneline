@@ -176,8 +176,9 @@ class Main(threading.Thread):
         self.encoder.set_zero()
         while self.current_position < 0.0:
             print "HERE"
-            self.current_position = self.queue.get(True,None)
+            print self.current_position
             self.spool.move_step_forward()
+            self.current_position = self.queue.get(True,None)
         #print "before while"
         self.initial_sequence()
         for item in test.test_list:
