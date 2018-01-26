@@ -5,6 +5,7 @@ import threading
 import time
 import Queue
 import test
+import AMT203
 
 MM_PER_STEP = 0.036
 MM_COUNTER = 0
