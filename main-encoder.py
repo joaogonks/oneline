@@ -174,11 +174,11 @@ class Main(threading.Thread):
     def run(self):
         self.encoder.start()
         self.encoder.set_zero()
-        while self.current_position < 0.0:
-            print "HERE"
-            print self.current_position
-            self.spool.move_step_forward()
-            self.current_position = self.queue.get(True,None)
+        # while self.current_position < 0.0:
+        #     print "HERE"
+        #     print self.current_position
+        #     self.spool.move_step_forward()
+        #     self.current_position = self.queue.get(True,None)
         #print "before while"
         self.initial_sequence()
         for item in test.test_list:
