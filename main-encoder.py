@@ -178,6 +178,7 @@ class Main(threading.Thread):
             #print "HERE"
             self.encoder.set_zero()
             self.current_position = self.queue.get(True,None)
+            self.spool.move_step_forward()
             while self.current_position is not 0:
                 self.current_position = self.queue.get(True,None)
                 self.spool.move_step_forward()
