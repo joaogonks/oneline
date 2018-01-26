@@ -6,6 +6,7 @@ class AMT203():
   def __init__(self, bus=0, deviceId=0):
     self.deviceId = deviceId
     self.bus = bus
+    spi.max_speed_hz = 1000000
     # self.pin = pin
     GPIO.setmode(GPIO.BCM)
     # GPIO.setup(self.pin, GPIO.OUT)
@@ -42,13 +43,13 @@ class AMT203():
     return final_result
 
   def set_zero(self):
-    #self.clean_buffer()
+    self.clean_buffer()
     first_result = self.spi.xfer([0x70],0,20)
     while first_result[0] != 128:
-      print first_result[0]
+      #print first_result[0]
       first_result = self.spi.xfer([0x00],0,20)
     print "Zero set was successful and the new position offset is stored in EEPROM"
-    #self.clean_buffer()
+    self.clean_buffer()
     # GPIO.output(self.pin, GPIO.LOW)
     time.sleep(0.1)
     # GPIO.output(self.pin, GPIO.HIGH)
