@@ -133,8 +133,8 @@ class Encoder(threading.Thread):
         elif self.last_position - current_position < 0 and not self.direction:
             self.lap -= 1
         self.last_position = current_position
-        print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))-4096
-        return (self.lap*self.resolution) + current_position
+        # print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))-4096
+        return abs(4096 - ((self.lap*self.resolution) + current_position))-4096
 
     def run(self):
         print "Class Encoder thread started."
@@ -182,7 +182,7 @@ class Main(threading.Thread):
                 self.spool.move_step_forward()
                 print self.current_position
             self.z_motor.receive(item[1])
-            #print "We're at: %smm" % (self.current_position)
+            print "We're at: %smm" % (self.current_position)
         self.initial_sequence()
 
 main = Main()
