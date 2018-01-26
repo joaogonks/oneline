@@ -147,7 +147,7 @@ class Encoder(threading.Thread):
             #     self.last_relative_position = current_relative_position
             current_relative_position_in_mm = current_relative_position * self.mm_per_step
             main.update_value(current_relative_position_in_mm)
-            # time.sleep(0.01)
+            time.sleep(0.0001)
 
 
 class Main(threading.Thread):
