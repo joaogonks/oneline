@@ -127,6 +127,7 @@ class Encoder(threading.Thread):
 
     def get_relative_position(self):
         current_position = self.encoder.get_position()
+        print "RAW FROM ENCODER: ", current_position
         self.direction = False if (self.last_position < current_position and  current_position - self.last_position < self.gap) or  (self.last_position - current_position > self.gap) else True
         if current_position < self.last_position and self.direction:
             self.lap +=  1
@@ -139,7 +140,6 @@ class Encoder(threading.Thread):
         print "Class Encoder thread started."
         while True:
             current_relative_position = self.get_relative_position()
-            print "RAW FROM ENCODER: ", current_relative_position
             if current_relative_position != self.last_relative_position:
                 self.last_relative_position = current_relative_position
                 current_relative_position_in_mm = current_relative_position * self.mm_per_step
