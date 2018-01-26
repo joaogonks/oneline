@@ -42,13 +42,13 @@ class AMT203():
     return final_result
 
   def set_zero(self):
-    self.clean_buffer()
+    #self.clean_buffer()
     first_result = self.spi.xfer([0x70],0,20)
     while first_result[0] != 128:
       print first_result[0]
       first_result = self.spi.xfer([0x00],0,20)
     print "Zero set was successful and the new position offset is stored in EEPROM"
-    self.clean_buffer()
+    #self.clean_buffer()
     # GPIO.output(self.pin, GPIO.LOW)
     time.sleep(0.1)
     # GPIO.output(self.pin, GPIO.HIGH)
