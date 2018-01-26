@@ -169,6 +169,7 @@ class Main(threading.Thread):
 
     def run(self):
         self.initial_sequence()
+        self.encoder.start()
     #            MM_COUNTER = 0
         for item in test.test_list:
             print "HERE"
