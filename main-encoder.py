@@ -174,7 +174,7 @@ class Main(threading.Thread):
     #            MM_COUNTER = 0
         for item in test.test_list:
             #print "HERE"
-            self.encoder.set_zero()
+            self.encoder.encoder.set_zero()
             self.current_position = self.queue.get(True,None)
             #print "before while"
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
