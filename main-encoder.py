@@ -172,14 +172,17 @@ class Main(threading.Thread):
         self.queue.put(value)
 
     def run(self):
-        self.initial_sequence()
         self.encoder.start()
     #            MM_COUNTER = 0
         for item in test.test_list:
             #print "HERE"
             self.encoder.set_zero()
             self.current_position = self.queue.get(True,None)
+            while self.current_position is not 0:
+                self.current_position = self.queue.get(True,None)
+                self.spool.move_step_forward()
             #print "before while"
+            self.initial_sequence()
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 #print "moving forward"
