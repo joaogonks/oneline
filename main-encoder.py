@@ -164,7 +164,7 @@ class Main(threading.Thread):
             self.spool.move_forward(5)
             self.z_motor.receive(False)
             self.spool.move_forward(5)
-    def update_position(self,value):
+    def update_value(self,value):
         self.queue.put(value)
 
     def run(self):
