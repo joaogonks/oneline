@@ -216,6 +216,7 @@ class Main(threading.Thread):
                 print self.current_position
                 self.dc_motor.start_motor()
                 print self.current_position
+                time.sleep(0.01)
             self.dc_motor.stop_motor()
             self.z_motor.receive(item[1])
             print "We're at: %smm" % (self.current_position)
