@@ -184,7 +184,7 @@ class Main(threading.Thread):
         goal = 5.0 #mm
         self.encoder.set_zero()
         self.current_position = self.queue.get(True,None)
-        for i in range(0,3):
+        for i in range(0,4):
             self.encoder.set_zero()
             self.current_position = self.queue.get(True,None)
             while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
