@@ -206,6 +206,7 @@ class Main(threading.Thread):
         #self.initial_sequence()
         for item in test.test_list:
             print "HERE"
+            self.encoder.set_zero()
             self.current_position = self.queue.get(True,None)
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
