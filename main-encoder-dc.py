@@ -218,6 +218,7 @@ class Main(threading.Thread):
             print "We're at: %smm" % (self.current_position)
         #self.initial_sequence()
         self.dc_motor.stop_motor()
+        self.stop()
 
 main = Main()
 main.start()
