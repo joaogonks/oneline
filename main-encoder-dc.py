@@ -209,6 +209,7 @@ class Main(threading.Thread):
         for item in test.test_list:
             print "HERE"
             self.encoder.set_zero()
+            print "THERE"
             self.current_position = self.queue.get(True,None)
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
