@@ -226,6 +226,7 @@ class Main(threading.Thread):
         gpio.cleanup()
 
 main = Main()
+main.daemon = True
 main.start()
 
 
