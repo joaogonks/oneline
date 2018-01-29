@@ -186,12 +186,14 @@ class Main(threading.Thread):
         self.current_position = self.queue.get(True,None)
         for i in range(0,3):
             self.encoder.set_zero()
+            self.current_position = self.queue.get(True,None)
             while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 self.dc_motor.start_motor()
             self.dc_motor.stop_motor()
             self.z_motor.receive(True)
             self.encoder.set_zero()
+            self.current_position = self.queue.get(True,None)
             while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 self.dc_motor.start_motor()
