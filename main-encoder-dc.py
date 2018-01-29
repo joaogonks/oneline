@@ -138,6 +138,7 @@ class Encoder(threading.Thread):
         return abs(4096 - ((self.lap*self.resolution) + current_position))-4096
 
     def set_zero(self):
+        print "Setting zero"
         self.encoder.set_zero()
 
     def run(self):
@@ -183,6 +184,7 @@ class Main(threading.Thread):
         print "Running initial sequence..."
         goal = 10.0 #mm
         self.encoder.set_zero()
+        time.sleep(1)
         self.current_position = self.queue.get(True,None)
         for i in range(0,3):
             while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
