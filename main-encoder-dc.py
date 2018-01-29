@@ -184,7 +184,6 @@ class Main(threading.Thread):
         print "Running initial sequence..."
         goal = 10.0 #mm
         self.encoder.set_zero()
-        time.sleep(1)
         self.current_position = self.queue.get(True,None)
         for i in range(0,3):
             while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
@@ -209,6 +208,7 @@ class Main(threading.Thread):
         for item in test.test_list:
             print "HERE"
             self.encoder.set_zero()
+            time.sleep(1)
             print "THERE"
             self.current_position = self.queue.get(True,None)
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
