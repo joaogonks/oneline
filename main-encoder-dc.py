@@ -204,6 +204,7 @@ class Main(threading.Thread):
 
     def run(self):
         self.encoder.start()
+        self.encoder.encoder.clean_buffer()
         print "HERE"
         self.encoder.set_zero()
         time.sleep(1)
