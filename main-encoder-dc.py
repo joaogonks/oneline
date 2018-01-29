@@ -181,10 +181,11 @@ class Main(threading.Thread):
 
     def initial_sequence(self):
         print "Running initial sequence..."
-        goal = 10.0 #mm
+        goal = 5.0 #mm
         self.encoder.set_zero()
         self.current_position = self.queue.get(True,None)
         for i in range(0,3):
+            self.encoder.set_zero()
             while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 self.dc_motor.start_motor()
@@ -206,8 +207,8 @@ class Main(threading.Thread):
         self.encoder.set_zero()
         time.sleep(1)
         print "THERE"
+        self.initial_sequence()
         self.encoder.start()
-        #self.initial_sequence()
         for item in test.test_list:
             self.current_position = self.queue.get(True,None)
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
