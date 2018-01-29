@@ -178,7 +178,7 @@ class Main(threading.Thread):
         self.encoder = Encoder(0,1)
         self.current_position = None
         self.last_position = None
-        self.tolerance = 0.1
+        self.tolerance = 0.5
 
     def initial_sequence(self):
         print "Running initial sequence..."
