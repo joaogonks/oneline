@@ -174,8 +174,11 @@ class Main(threading.Thread):
         self.queue = Queue.Queue()
         #self.spool = Spool()
         self.dc_motor = DC_Motor()
+        self.dc_motor.daemon = True
         self.z_motor = Z_Motor()
+        self.z_motor.daemon = True
         self.encoder = Encoder(0,1)
+        self.encoder.daemon = True
         self.current_position = None
         self.last_position = None
         self.tolerance = 0.1
