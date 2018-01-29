@@ -222,6 +222,7 @@ class Main(threading.Thread):
         #self.initial_sequence()
         self.dc_motor.stop_motor()
         self.stop()
+        gpio.cleanup()
 
 main = Main()
 main.start()
