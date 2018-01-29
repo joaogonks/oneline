@@ -224,6 +224,9 @@ class Main(threading.Thread):
         #self.initial_sequence()
         self.dc_motor.stop_motor()
         gpio.cleanup()
+        self.dc_motor.join()
+        self.z_motor.join()
+        self.encoder.join()
         self.join()
 
 main = Main()
