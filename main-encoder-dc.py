@@ -143,7 +143,6 @@ class Encoder(threading.Thread):
 
     def run(self):
         print "Class Encoder thread started."
-        self.encoder.set_zero()
         while True:
             current_relative_position = self.get_relative_position()
             # if current_relative_position != self.last_relative_position:
@@ -203,12 +202,11 @@ class Main(threading.Thread):
         self.queue.put(value)
 
     def run(self):
-        self.encoder.start()
-        self.encoder.encoder.clean_buffer()
         print "HERE"
         self.encoder.set_zero()
         time.sleep(1)
         print "THERE"
+        self.encoder.start()
         #self.initial_sequence()
         for item in test.test_list:
             self.current_position = self.queue.get(True,None)
