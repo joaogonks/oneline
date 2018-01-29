@@ -124,7 +124,7 @@ class Encoder(threading.Thread):
         self.direction = None
         self.perimeter = 44.0118
         self.mm_per_step = self.perimeter/self.resolution
-        self.encoder.set_zero()
+        #self.encoder.set_zero()
 
     def get_relative_position(self):
         current_position = self.encoder.get_position()
