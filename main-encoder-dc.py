@@ -151,7 +151,7 @@ class Encoder(threading.Thread):
             #     self.last_relative_position = current_relative_position
             current_relative_position_in_mm = current_relative_position * self.mm_per_step
             main.update_value(current_relative_position_in_mm)
-            time.sleep(0.005)
+            time.sleep(0.05)
 
 class DC_Motor(threading.Thread):
     def __init__(self):
