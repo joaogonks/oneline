@@ -232,7 +232,7 @@ class Main(threading.Thread):
 
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
-                speed = int(self.translate(self.current_position, start_point, objective, 1023, 0))
+                speed = int(self.translate(self.current_position, start_point, objective, 1023, 70))
                 print "speed: ", speed
                 self.dc_motor.start_motor(speed)
                 time.sleep(0.01)
