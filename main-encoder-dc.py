@@ -7,7 +7,7 @@ import Queue
 import test
 import AMT203
 import RPi.GPIO as gpio
-import wiringpi2 as wiringpi
+import wiringpi
 
 MM_PER_STEP = 0.036
 MM_COUNTER = 0
