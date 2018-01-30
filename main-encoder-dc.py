@@ -187,24 +187,20 @@ class Main(threading.Thread):
     def initial_sequence(self):
         print "Running initial sequence..."
         goal = 5.0 #mm
-        self.encoder.set_zero()
-        self.current_position = self.queue.get(True,None)
-        for i in range(0,4):
-            self.encoder.set_zero()
-            self.current_position = self.queue.get(True,None)
-            while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
-                self.current_position = self.queue.get(True,None)
-                self.dc_motor.start_motor()
-            self.dc_motor.stop_motor()
-            self.z_motor.receive(True)
-            self.encoder.set_zero()
-            self.current_position = self.queue.get(True,None)
-            while not goal - self.tolerance <= self.current_position <= goal + self.tolerance:
-                self.current_position = self.queue.get(True,None)
-                self.dc_motor.start_motor()
-            self.dc_motor.stop_motor()
-            self.z_motor.receive(False)
-            self.encoder.set_zero()
+        self.z_motor.receive(True)
+        self.dc_motor.start_motor(700)
+        time.sleep(1)
+        self.dc_motor.start_motor(0)
+        self.z_motor.receive(False)
+        self.dc_motor.start_motor(700)
+        time.sleep(1)
+        self.dc_motor.start_motor(0)        
+        self.z_motor.receive(True)
+        self.dc_motor.start_motor(700)
+        time.sleep(1)
+        self.dc_motor.start_motor(0)
+        self.z_motor.receive(False)
+
 
     def update_value(self,value):
         self.queue.put(value)
@@ -217,11 +213,11 @@ class Main(threading.Thread):
 
     def run(self):
         print "HERE"
+        self.initial_sequence()
         self.encoder.set_zero()
         time.sleep(1)
         print "THERE"
         self.encoder.start()
-        #self.initial_sequence()
         for index, item in enumerate(test.test_list):
             print index
             self.current_position = self.queue.get(True,None)
@@ -240,7 +236,7 @@ class Main(threading.Thread):
             self.dc_motor.stop_motor()
             self.z_motor.receive(item[1])
             print "We're at: %smm" % (self.current_position)
-        #self.initial_sequence()
+        self.initial_sequence()
         self.dc_motor.stop_motor()
         gpio.cleanup()
         self.dc_motor.join()
