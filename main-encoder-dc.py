@@ -135,7 +135,7 @@ class Encoder(threading.Thread):
         elif self.last_position - current_position < 0 and not self.direction:
             self.lap -= 1
         self.last_position = current_position
-        print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))-4096
+        #print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))-4096
         return abs(4096 - ((self.lap*self.resolution) + current_position))-4096
 
     def set_zero(self):
@@ -162,7 +162,7 @@ class DC_Motor(threading.Thread):
         # gpio.output(self.motor_pin, False)
 
     def start_motor(self, value):
-        print "inside motor"
+        #print "inside motor"
         wiringpi.pwmWrite(self.motor_pin, value)
 
     def stop_motor(self):
@@ -230,12 +230,12 @@ class Main(threading.Thread):
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 speed = self.translate(self.current_position, start_point, objective, 1023,500)
-                print "speed: ", speed
+                print "Current position in mm: ", self.current_position
                 self.dc_motor.start_motor(speed)
                 time.sleep(0.001)
             self.dc_motor.stop_motor()
             self.z_motor.receive(item[1])
-            print "We're at: %smm" % (self.current_position)
+            #print "We're at: %smm" % (self.current_position)
         self.initial_sequence()
         self.dc_motor.stop_motor()
         gpio.cleanup()
