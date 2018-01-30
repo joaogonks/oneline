@@ -143,6 +143,7 @@ class Encoder(threading.Thread):
 
     def run(self):
         print "Class Encoder thread started."
+        main.update_value(0.0)
         while True:
             current_relative_position = self.get_relative_position()
             # if current_relative_position != self.last_relative_position:
