@@ -221,13 +221,13 @@ class Main(threading.Thread):
         for index, item in enumerate(test.test_list):
             print index
             self.current_position = self.queue.get(True,None)
-            objective = item[0]
+            objective = 10*item[0]
             if index is not 0:
-                start_point = test.test_list[index-1][0]
+                start_point = 10*(test.test_list[index-1][0])
             else:
                 start_point = 0
 
-            while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
+            while not 10*item[0] - self.tolerance <= self.current_position <= 10*item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 speed = self.translate(self.current_position, start_point, objective, 1023,500)
                 print "Current position in mm: ", self.current_position
