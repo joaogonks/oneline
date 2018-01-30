@@ -135,7 +135,7 @@ class Encoder(threading.Thread):
         elif self.last_position - current_position < 0 and not self.direction:
             self.lap -= 1
         self.last_position = current_position
-        print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))-4096
+        #print "HELLO", abs(4096 - ((self.lap*self.resolution) + current_position))-4096
         return abs(4096 - ((self.lap*self.resolution) + current_position))-4096
 
     def set_zero(self):
@@ -232,6 +232,7 @@ class Main(threading.Thread):
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
                 speed = self.translate(self.current_position, start_point, objective, 1023, 0)
+                print "speed: ", speed
                 self.dc_motor.start_motor(speed)
                 time.sleep(0.01)
             self.dc_motor.stop_motor()
