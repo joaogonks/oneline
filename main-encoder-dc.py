@@ -223,6 +223,7 @@ class Main(threading.Thread):
         self.encoder.start()
         #self.initial_sequence()
         for index, item in enumerate(test.test_list):
+            print index
             self.current_position = self.queue.get(True,None)
             objective = item[0]
             if index is not 0:
