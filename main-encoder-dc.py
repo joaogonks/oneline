@@ -7,6 +7,7 @@ import Queue
 import test
 import AMT203
 import RPi.GPIO as gpio
+import wiringpi2 as wiringpi
 
 MM_PER_STEP = 0.036
 MM_COUNTER = 0
@@ -160,16 +161,18 @@ class DC_Motor(threading.Thread):
         gpio.setup(self.motor_pin, gpio.OUT)
         gpio.output(self.motor_pin, False)
 
-    def start_motor(self):
-        gpio.output(self.motor_pin, True)
+    def start_motor(self, value):
+        wiringpi.pwmWrite(self.motor_pin, value)
 
     def stop_motor(self):
-        gpio.output(self.motor_pin, False)
+        wiringpi.pwmWrite(self.motor_pin, 0)
 
 
 
 class Main(threading.Thread):
     def __init__(self):
+        wiringpi.wiringPiSetupGpio()
+        wiringpi.pinMode(18,2)
         threading.Thread.__init__(self)
         self.queue = Queue.Queue()
         #self.spool = Spool()
@@ -205,6 +208,12 @@ class Main(threading.Thread):
     def update_value(self,value):
         self.queue.put(value)
 
+    def translate(self, value, leftMin, leftMax, rightMin, rightMax):
+        leftSpan = leftMax - leftMin
+        rightSpan = rightMax - rightMin
+        valueScaled = float(value - leftMin) / float(leftSpan)
+        return rightMin + (valueScaled * rightSpan)
+
     def run(self):
         print "HERE"
         self.encoder.set_zero()
@@ -212,13 +221,18 @@ class Main(threading.Thread):
         print "THERE"
         self.encoder.start()
         #self.initial_sequence()
-        for item in test.test_list:
+        for index, item in enumerate(test.test_list):
             self.current_position = self.queue.get(True,None)
+            objective = item[0]
+            if index is not 0:
+                start_point = test.test_list[index-1]
+            else:
+                start_point = 0
+
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
-                print self.current_position
-                self.dc_motor.start_motor()
-                print self.current_position
+                speed = self.translate(self.current_position, start_point, objective, 1023, 0)
+                self.dc_motor.start_motor(speed)
                 time.sleep(0.01)
             self.dc_motor.stop_motor()
             self.z_motor.receive(item[1])
