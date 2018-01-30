@@ -157,11 +157,12 @@ class DC_Motor(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.motor_pin = 18
-        gpio.setmode(gpio.BCM)
-        gpio.setup(self.motor_pin, gpio.OUT)
-        gpio.output(self.motor_pin, False)
+        # gpio.setmode(gpio.BCM)
+        # gpio.setup(self.motor_pin, gpio.OUT)
+        # gpio.output(self.motor_pin, False)
 
     def start_motor(self, value):
+        print "inside motor"
         wiringpi.pwmWrite(self.motor_pin, value)
 
     def stop_motor(self):
