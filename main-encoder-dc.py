@@ -213,7 +213,7 @@ class Main(threading.Thread):
         leftSpan = leftMax - leftMin
         rightSpan = rightMax - rightMin
         valueScaled = float(value - leftMin) / float(leftSpan)
-        return rightMin + (valueScaled * rightSpan)
+        return int(rightMin + (valueScaled * rightSpan))
 
     def run(self):
         print "HERE"
@@ -233,7 +233,7 @@ class Main(threading.Thread):
 
             while not item[0] - self.tolerance <= self.current_position <= item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
-                speed = int(self.translate(self.current_position, start_point, objective, 1023,600))
+                speed = self.translate(self.current_position, start_point, objective, 1023,600)
                 print "speed: ", speed
                 self.dc_motor.start_motor(speed)
                 time.sleep(0.01)
