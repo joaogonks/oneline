@@ -229,7 +229,7 @@ class Main(threading.Thread):
 
             while not 10*item[0] - self.tolerance <= self.current_position <= 10*item[0] + self.tolerance:
                 self.current_position = self.queue.get(True,None)
-                speed = self.translate(self.current_position, start_point, objective, 1023,500)
+                speed = self.translate(self.current_position, start_point, objective, 1023,800)
                 print "Current position in mm: ", self.current_position
                 self.dc_motor.start_motor(speed)
                 time.sleep(0.001)
