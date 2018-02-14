@@ -123,7 +123,7 @@ class Encoder(threading.Thread):
         self.gap = 2000
         self.lap = 0
         self.direction = None
-        self.perimeter = 44.04#44.0118
+        self.perimeter = 45.7722#44.0118
         self.mm_per_step = self.perimeter/self.resolution
         #self.encoder.set_zero()
 
