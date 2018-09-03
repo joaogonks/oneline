@@ -24,22 +24,24 @@ class AMT203():
           print first_result 
           first_result = self.pi.spi_xfer(self.spi,[0x00])
         print "Buffer empty"
+
     def get_position(self):
         first_result = self.pi.spi_xfer(self.spi,[0x10])
         while first_result[1] != b'\x10':
           first_result = self.pi.spi_xfer(self.spi,[0x00])
-        discard, msb_result = self.pi.spi_xfer(self.spi,[0x00])
-        discard2, lsb_result = self.pi.spi_xfer(self.spi,[0x00])
+        (discard, msb_result) = self.pi.spi_xfer(self.spi,[0x00])
+        (discard2, lsb_result) = self.pi.spi_xfer(self.spi,[0x00])
         # print "MSB: %s | LSB: %s " % (msb_result, lsb_result)
-        print msb_result[:1]
+        print msb_result
         msb = self.bytes_to_int(msb_result)
         lsb = self.bytes_to_int(lsb_result)
         # msb_bin = bin(msb_result[0]<<8)[2:]
         # lsb_bin = bin(lsb_result[0])[2:]
-        final_result = (msb<<8 | lsb)
+        final_result = (msb << 8 | lsb)
         # print "Final: ", final_result
         self.clean_buffer()
         return final_result
+
     def set_zero(self):
         self.clean_buffer()
         first_result = self.pi.spi_xfer(self.spi,[0x70])
