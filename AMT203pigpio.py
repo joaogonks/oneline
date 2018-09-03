@@ -1,5 +1,6 @@
 import pigpio
 from time import sleep
+import codecs
 
 class AMT203():
     def __init__(self, bus=0, deviceId=0, baud_rate=1000000):
@@ -30,6 +31,8 @@ class AMT203():
         msb_result = self.pi.spi_xfer(self.spi,[0x00])
         lsb_result = self.pi.spi_xfer(self.spi,[0x00])
         print "MSB: %s | LSB: %s " % (msb_result, lsb_result)
+        msb = self.bytes_to_int(msb_result[1])
+        lsb = self.bytes_to_int(lsb_result[1])
         # msb_bin = bin(msb_result[0]<<8)[2:]
         # lsb_bin = bin(lsb_result[0])[2:]
         final_result = (msb_result[1]<<8 | lsb_result[1])
@@ -50,5 +53,5 @@ class AMT203():
 
     def get_resolution(self):
         return 4096
-    def bytes_to_int(bytes):
-        return int(bytes.encode('hex'), 16)
+    def bytes_to_int(value):
+        return int(codecs.encode(value,'hex'), 16)
