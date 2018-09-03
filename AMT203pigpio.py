@@ -36,7 +36,7 @@ class AMT203():
         lsb = self.bytes_to_int(lsb_result)
         # msb_bin = bin(msb_result[0]<<8)[2:]
         # lsb_bin = bin(lsb_result[0])[2:]
-        final_result = (msb]<<8 | lsb[1])
+        final_result = (msb<<8 | lsb)
         # print "Final: ", final_result
         self.clean_buffer()
         return final_result
