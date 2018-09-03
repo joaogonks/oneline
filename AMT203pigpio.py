@@ -19,16 +19,12 @@ class AMT203():
 
     def clean_buffer(self):
         first_result = self.pi.spi_xfer(self.spi,[0x00])
-        first_int = self.bytes_to_int(first_result[1])
-        print first_int
-        while first_int != 165:
-          print first_int
+        while first_result != b'\xa5':
           first_result = self.pi.spi_xfer(self.spi,[0x00])
-          first_int = self.bytes_to_int(first_result[1])
         print "Buffer empty"
     def get_position(self):
         first_result = self.pi.spi_xfer(self.spi,[0x10])
-        while first_result[0] != 16:
+        while first_result[0] != b'\x10':
           first_result = self.pi.spi_xfer(self.spi,[0x00])
         msb_result = self.pi.spi_xfer(self.spi,[0x00])
         lsb_result = self.pi.spi_xfer(self.spi,[0x00])
@@ -42,7 +38,7 @@ class AMT203():
     def set_zero(self):
         self.clean_buffer()
         first_result = self.pi.spi_xfer(self.spi,[0x70])
-        while first_result[0] != 128:
+        while first_result[0] != b'\80':
           print first_result[0]
           first_result = self.pi.spi_xfer(self.spi,[0x10])
         print "Zero set was successful and the new position offset is stored in EEPROM"
