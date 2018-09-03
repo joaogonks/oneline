@@ -56,5 +56,5 @@ class AMT203():
 
     def get_resolution(self):
         return 4096
-    def bytes_to_int(value):
+    def bytes_to_int(self,value):
         return int(codecs.encode(value,'hex'), 16)
