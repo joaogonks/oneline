@@ -31,9 +31,9 @@ class AMT203():
         msb_result = self.pi.spi_xfer(self.spi,[0x00])
         lsb_result = self.pi.spi_xfer(self.spi,[0x00])
         print "MSB: %s | LSB: %s " % (msb_result, lsb_result)
-        print msb_result[0]
-        msb = self.bytes_to_int(msb_result[1][0])
-        lsb = self.bytes_to_int(lsb_result[1][0])
+        print msb_result[1][:1]
+        msb = self.bytes_to_int(msb_result[1][:1])
+        lsb = self.bytes_to_int(lsb_result[1][:1])
         # msb_bin = bin(msb_result[0]<<8)[2:]
         # lsb_bin = bin(lsb_result[0])[2:]
         final_result = (msb_result[1]<<8 | lsb_result[1])
