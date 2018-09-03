@@ -32,7 +32,7 @@ class AMT203():
         # print "MSB: %s | LSB: %s " % (msb_result, lsb_result)
         # msb_bin = bin(msb_result[0]<<8)[2:]
         # lsb_bin = bin(lsb_result[0])[2:]
-        final_result = (msb_result[0]<<8 | lsb_result[0])
+        final_result = (msb_result[1]<<8 | lsb_result[1])
         # print "Final: ", final_result
         self.clean_buffer()
         return final_result
