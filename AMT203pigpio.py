@@ -19,9 +19,12 @@ class AMT203():
 
     def clean_buffer(self):
         first_result = self.pi.spi_xfer(self.spi,[0x00])
-        while first_result[0] != 165:
-          print first_result[1]
+        first_int = self.bytes_to_int(first_result[1])
+        print first_int
+        while first_int != 165:
+          print first_int
           first_result = self.pi.spi_xfer(self.spi,[0x00])
+          first_int = self.bytes_to_int(first_result[1])
         print "Buffer empty"
     def get_position(self):
         first_result = self.pi.spi_xfer(self.spi,[0x10])
@@ -50,3 +53,5 @@ class AMT203():
 
     def get_resolution(self):
         return 4096
+    def bytes_to_int(bytes):
+        return int(bytes.encode('hex'), 16)
