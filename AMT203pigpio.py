@@ -20,6 +20,7 @@ class AMT203():
     def clean_buffer(self):
         first_result = self.pi.spi_xfer(self.spi,[0x00])
         while first_result != b'\xa5':
+          print first_result 
           first_result = self.pi.spi_xfer(self.spi,[0x00])
         print "Buffer empty"
     def get_position(self):
