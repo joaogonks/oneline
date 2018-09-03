@@ -8,7 +8,6 @@ class AMT203():
         self.bus = bus
         self.pi = pigpio.pi()
         self.baud_rate = baud_rate
-        self.msb = None
 
         try:
             print "bus: %s | pin: %s" % (self.bus, self.deviceId)
@@ -30,7 +29,7 @@ class AMT203():
         first_result = self.pi.spi_xfer(self.spi,[0x10])
         while first_result[1] != b'\x10':
           first_result = self.pi.spi_xfer(self.spi,[0x00])
-        (discard, self.msb) = self.pi.spi_xfer(self.spi,[0x00])
+        (discard, msb_result) = self.pi.spi_xfer(self.spi,[0x00])
         (discard2, lsb_result) = self.pi.spi_xfer(self.spi,[0x00])
         # print "MSB: %s | LSB: %s " % (msb_result, lsb_result)
         print msb_result
