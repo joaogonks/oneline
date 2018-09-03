@@ -18,17 +18,17 @@ class AMT203():
             print "Could not connect to SPI device: ", e
 
     def clean_buffer(self):
-        first_result = self.pi.spi_xfer(self.pi,[0x00])
+        first_result = self.pi.spi_xfer(self.spi,[0x00])
         while first_result[0] != 165:
-          # print first_result[0]
-          first_result = self.pi.spi_xfer(self.pi,[0x00])
-        # print "Buffer empty"
+          print first_result[1]
+          first_result = self.pi.spi_xfer(self.spi,[0x00])
+        print "Buffer empty"
     def get_position(self):
-        first_result = self.pi.spi_xfer(self.pi,[0x10])
+        first_result = self.pi.spi_xfer(self.spi,[0x10])
         while first_result[0] != 16:
-          first_result = self.pi.spi_xfer(self.pi,[0x00])
-        msb_result = self.pi.spi_xfer(self.pi,[0x00])
-        lsb_result = self.pi.spi_xfer(self.pi,[0x00])
+          first_result = self.pi.spi_xfer(self.spi,[0x00])
+        msb_result = self.pi.spi_xfer(self.spi,[0x00])
+        lsb_result = self.pi.spi_xfer(self.spi,[0x00])
         # print "MSB: %s | LSB: %s " % (msb_result, lsb_result)
         # msb_bin = bin(msb_result[0]<<8)[2:]
         # lsb_bin = bin(lsb_result[0])[2:]
@@ -38,10 +38,10 @@ class AMT203():
         return final_result
     def set_zero(self):
         self.clean_buffer()
-        first_result = self.pi.spi_xfer(self.pi,[0x70])
+        first_result = self.pi.spi_xfer(self.spi,[0x70])
         while first_result[0] != 128:
-          #print first_result[0]
-          first_result = self.pi.spi_xfer(self.pi,[0x10])
+          print first_result[0]
+          first_result = self.pi.spi_xfer(self.spi,[0x10])
         print "Zero set was successful and the new position offset is stored in EEPROM"
         self.clean_buffer()
         # GPIO.output(self.pin, GPIO.LOW)
