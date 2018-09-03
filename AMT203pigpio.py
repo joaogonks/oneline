@@ -28,15 +28,15 @@ class AMT203():
         first_result = self.pi.spi_xfer(self.spi,[0x10])
         while first_result[1] != b'\x10':
           first_result = self.pi.spi_xfer(self.spi,[0x00])
-        msb_result = self.pi.spi_xfer(self.spi,[0x00])
-        lsb_result = self.pi.spi_xfer(self.spi,[0x00])
+        discard, msb_result = self.pi.spi_xfer(self.spi,[0x00])
+        discard2, lsb_result = self.pi.spi_xfer(self.spi,[0x00])
         print "MSB: %s | LSB: %s " % (msb_result, lsb_result)
-        print msb_result[1][:1]
-        msb = self.bytes_to_int(msb_result[1][:1])
-        lsb = self.bytes_to_int(lsb_result[1][:1])
+        print msb_result
+        msb = self.bytes_to_int(msb_result)
+        lsb = self.bytes_to_int(lsb_result)
         # msb_bin = bin(msb_result[0]<<8)[2:]
         # lsb_bin = bin(lsb_result[0])[2:]
-        final_result = (msb_result[1]<<8 | lsb_result[1])
+        final_result = (msb]<<8 | lsb[1])
         # print "Final: ", final_result
         self.clean_buffer()
         return final_result
